@@ -1,0 +1,55 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid mx-auto">
+  <h1 class="text-center">
+    Rate my Cakessss!
+  </h1>
+  <br>
+</div>
+<div class="row sp" data-spy="scroll">
+    <div class="col">
+  <form (submit)="onSubmit()" class="top">
+  
+    <div class="form-group row">
+      <label for="staticEmail" class="col col-form-label">Baker Name:</label>
+      <div class="col-10">
+        <input type="text" name="cakeToCreate.name" [(ngModel)]="cakeToCreate.name" class="form-control" placeholder="Baker name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col col-form-label">Image URL:</label>
+      <div class="col-10">
+        <input type="text" class="form-control" name="cakeToCreate.url" [(ngModel)]="cakeToCreate.url" placeholder="URL">
+      </div>
+      <br>
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+  </form>
+</div>
+<div data-spy="scroll" class="col spp">
+  <div *ngFor="let cake of cakes" class="row col">
+    <div class="spp inline-block d-flex justify-content-center">
+    <img (click)="getReviews(cake._id); getAverage(cake._id)" [src]="cake.url" alt="picture of cake">
+    <form (submit)="onRate(cake._id)" class="rating">
+    <div class="form-group col">
+        <label>Stars</label>
+        <select [(ngModel)]="ratings.rate" name="ratings.rate" class="form-control">
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </div>
+      <div class="form-group col">
+          <label for="staticEmail" class="col col-form-label">Comments:</label>
+          <textarea [(ngModel)]="ratings.comment" name="ratings.comment" type="textbox" class="form-control" id="inputZip"></textarea>
+          <br>
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+  </div>
+  </div>
+</div>
+</div>
+<app-reviews *ngIf="clicked" [reviews]="reviews" [avg]="avg"></app-reviews>
+<router-outlet></router-outlet>

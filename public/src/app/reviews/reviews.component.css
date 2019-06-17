@@ -1,0 +1,14 @@
+img {
+    width: 400px;
+    display: inline-block;
+}
+
+.sp {
+    width: 400px;
+}
+
+.spp {
+    width: 100%;
+    overflow: scroll;
+    height: 250px;
+}
